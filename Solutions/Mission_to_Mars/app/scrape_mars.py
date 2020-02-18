@@ -29,15 +29,21 @@ def scrape_all():
 def mars_news(browser):
     url = "https://mars.nasa.gov/news/"
     browser.visit(url)
+    html = browser.html
+    soup = BeautifulSoup(html, 'html.parser')
+    news_title = soup.find('div', class_='content_title').text
+    news_p = soup.find('div', class_='rollover_description_inner').text
 
-    #write your code here
     return news_title, news_p
 
 
 def featured_image(browser):
     url = "https://www.jpl.nasa.gov/spaceimages/?search=&category=Mars"
     browser.visit(url)
-    #write your code here
+    html = browser.html
+    soup = BeautifulSoup(html, 'html.parser')
+    featured_image = soup.find('a', class_='button fancybox')['data-fancybox-href']
+    img_url = 'https://www.jpl.nasa.gov'+featured_image
     return img_url
 
 
@@ -50,14 +56,21 @@ def hemispheres(browser):
     )
 
     browser.visit(url)
-    #write your code here
+    html = browser.html
+    soup = BeautifulSoup(html, 'html.parser')
+    cerberus_url = soup.find('div', class_='downloads')
+    link = cerberus_url.find('a')
+    hemisphere_image_urls = link['href']
     return hemisphere_image_urls
 
 
 def twitter_weather(browser):
     url = "https://twitter.com/marswxreport?lang=en"
     browser.visit(url)
-    #write your code here
+    html = browser.html
+    soup = BeautifulSoup(html, 'html.parser')
+    mars_weather = soup.find('div', class_="js-tweet-text-container").text
+    mars_weather
     return mars_weather
 
 
