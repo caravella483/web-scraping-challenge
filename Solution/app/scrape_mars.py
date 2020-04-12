@@ -52,12 +52,16 @@ def hemispheres(browser):
     browser.visit(url)
     #write your code here
     return hemisphere_image_urls
-    
+
+
 def twitter_weather(browser):
     url = "https://twitter.com/marswxreport?lang=en"
     browser.visit(url)
     #write your code here
     return mars_weather
+
+
+
 
 def mars_facts():
     try:
@@ -70,6 +74,7 @@ def mars_facts():
 
     # Add some bootstrap styling to <table>
     return df.to_html(classes="table table-striped")
+
 
 if __name__ == "__main__":
 
